@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Product as ProductType } from "../../products";
+import closeIcon from "../../assets/icons/close.svg";
 interface Props {
   product: ProductType;
+  onRemove: (id: number) => void;
 }
-export const Product = ({ product }: Props) => {
+export const Product = ({ product, onRemove }: Props) => {
   return (
     <div className="products-section-item">
       <div className="products-section-item__thumb">
@@ -18,6 +21,12 @@ export const Product = ({ product }: Props) => {
         </div>
 
         <span className="products-section-item__price">{product.price}€</span>
+        <div
+          onClick={() => onRemove(product.id)}
+          className="products-section-item__remove"
+        >
+          <img src={closeIcon} alt="" />
+        </div>
       </div>
     </div>
   );
